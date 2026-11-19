@@ -1,1 +1,12 @@
-<p>alimento-modal-components works!</p>
+<div class="modal-backdrop fade show"></div>
+<div class="modal fade show d-block" tabindex="-1" (click)="cerrar.emit()">
+   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" (click)="$event.stopPropagation()">
+    <form class="modal-content border-0 rounded-4" (ngSubmit)="guardar.emit()">
+        <div class="modal-header">
+            <h2 class="modal-title fw-bold h4">{{ esEdicion ? 'Editar alimento' : 'Añadir alimento'}}</h2>
+            <button type="button" class="btn-close" aria-label="Cerrar" (click)="cerrar.emit()"></button>
+        </div>
+          <!-- campos formulario -->
+    </form>
+   </div> 
+</div>

@@ -1,0 +1,9 @@
+.barra {
+    width: 232px;
+    flex-shrink: 0;
+    background: #19212f;
+    --bs-nav-link-color: #cfd6e2;
+    --bs-nav-link-hover-color: #fff;
+    --bs-nav-pills-link-active-bg: #e07b12;
+}
+

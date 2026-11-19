@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --bs-primary: #2f8fd0;
+  --bs-primary-rgb: 47, 143, 208;
+  --bs-primary-bg-subtle: #e6f2fb;
+  --bs-warning: #e07b12;
+  --bs-warning-rgb: 224, 123, 18;
+  --bs-warning-bg-subtle: #fdf0e0;
+  --bs-warning-text-emphasis: #a85a0a;
+  --bs-body-bg: #f6f8fb;
+  --bs-body-color: #1b2433;
+  --bs-border-color: #e3e8ef;
+  --bs-body-font-family: 'Inter', system-ui, sans-serif;
+  --bs-body-font-size: 0.9rem;
+}
+
+.btn-dino {
+  --bs-btn-color: #fff; 
+  --bs-btn-bg: #e07b12; 
+  --bs-btn-border-color: #e07b12;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #c96d0d; 
+  --bs-btn-hover-border-color: #c96d0d;
+  --bs-btn-active-color: #fff; 
+  --bs-btn-active-bg: #b8620b; 
+  --bs-btn-active-border-color: #b8620b;
+  font-weight: 600;
+}
