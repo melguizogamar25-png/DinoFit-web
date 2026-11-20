@@ -1,9 +1,26 @@
 .barra {
-    width: 232px;
-    flex-shrink: 0;
-    background: #19212f;
-    --bs-nav-link-color: #cfd6e2;
-    --bs-nav-link-hover-color: #fff;
-    --bs-nav-pills-link-active-bg: #e07b12;
+  width: 232px;
+  flex-shrink: 0;
+  padding: 1.25rem;
+  background: #1a202c;
+  color: #cbd5e1;
 }
 
+/* Las variables van en el propio .nav, porque Bootstrap las redefine ahí */
+.barra .nav {
+  --bs-nav-link-color: #cbd5e1;
+  --bs-nav-link-hover-color: #fff;
+  --bs-nav-link-padding-x: 0.8rem;
+  --bs-nav-link-padding-y: 0.7rem;
+  --bs-nav-link-font-size: 1rem;
+  --bs-nav-pills-link-active-bg: #e27b13;
+}
+
+.barra-suave { color: #94a3b8; }
+.barra-caja { background: #2d3748; }
+.avatar-barra { 
+    width: 2.25rem; 
+    height: 2.25rem; 
+    background: #fff2e4; 
+    color: #9b4c06; 
+}

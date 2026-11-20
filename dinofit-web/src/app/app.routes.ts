@@ -7,6 +7,8 @@ import { EjerciciosPageComponent } from './pages/ejercicios-page/ejercicios-page
 import { DietasPageComponent } from './pages/dietas-page/dietas-page-component/dietas-page-component';
 import { AlimentoPageComponent } from './pages/alimento-page/alimento-page-component/alimento-page-component';
 import { NoEncontradaPageComponent } from './pages/no-encontrada-page/no-encontrada-page-component/no-encontrada-page-component';
+import { InicioPagesComponent } from './pages/inicio-pages/inicio-pages-component';
+import { ChatPagesComponent } from './pages/chat-pages/chat-pages-component/chat-pages-component';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -15,11 +17,13 @@ export const routes: Routes = [
         path: '',
         component: LayoutAdminComponent,
         children: [
+            {path: 'inicio', component: InicioPagesComponent},
             {path: 'clientes', component: ClientesPageComponent},
             {path: 'rutinas', component: RutinaPageComponent},
             {path: 'ejercicios', component: EjerciciosPageComponent},
             {path: 'dietas', component: DietasPageComponent},
-            {path: 'alimentos', component: AlimentoPageComponent}
+            {path: 'alimentos', component: AlimentoPageComponent},
+            {path: 'chat', component: ChatPagesComponent}
         ]
     },
     {path: '**', component:NoEncontradaPageComponent}
