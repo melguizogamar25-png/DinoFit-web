@@ -27,4 +27,10 @@
     </table>
 </div>
 
-<!-- if de modales -->
+@if (mostrarModal) {
+    <app-alimento-modal-components [esEdicion]="esEdicion" (guardar)="guardar()" (cerrar)="mostrarModal = false"></app-alimento-modal-components>
+}
+
+@if (mostrarEliminar) {
+    <app-confirm-delete-modal-component (respuesta)="responderEliminar($event)"></app-confirm-delete-modal-component>
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   imports: [],
@@ -6,4 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './confirm-delete-modal-component.css',
   templateUrl: './confirm-delete-modal-component.html',
 })
-export class ConfirmDeleteModalComponent {}
+export class ConfirmDeleteModalComponent {
+
+  @Output() respuesta = new EventEmitter<boolean>();
+}
