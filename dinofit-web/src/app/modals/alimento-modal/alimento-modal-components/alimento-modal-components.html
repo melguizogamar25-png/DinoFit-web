@@ -1,12 +1,37 @@
 <div class="modal-backdrop fade show"></div>
 <div class="modal fade show d-block" tabindex="-1" (click)="cerrar.emit()">
-   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" (click)="$event.stopPropagation()">
+  <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable" (click)="$event.stopPropagation()">
     <form class="modal-content border-0 rounded-4" (ngSubmit)="guardar.emit()">
-        <div class="modal-header">
-            <h2 class="modal-title fw-bold h4">{{ esEdicion ? 'Editar alimento' : 'Añadir alimento'}}</h2>
-            <button type="button" class="btn-close" aria-label="Cerrar" (click)="cerrar.emit()"></button>
+      <div class="modal-header">
+        <h2 class="modal-title fw-bold h4">{{ esEdicion ? 'Editar alimento' : 'Añadir alimento' }}</h2>
+        <button type="button" class="btn-close" aria-label="Cerrar" (click)="cerrar.emit()"></button>
+      </div>
+      <div class="modal-body row g-3">
+        <div class="col-md-12">
+          <label class="form-label small fw-semibold text-secondary" for="nombre">Nombre del alimento</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" required>
         </div>
-          <!-- campos formulario -->
+        <div class="col-md-6">
+          <label class="form-label small fw-semibold text-secondary" for="kcal">Energía (kcal / 100 g)</label>
+          <input type="number" class="form-control" id="kcal" name="kcal" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label small fw-semibold text-secondary" for="proteinas">Proteínas (g / 100 g)</label>
+          <input type="number" class="form-control" id="proteinas" name="proteinas" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label small fw-semibold text-secondary" for="carbohidratos">Carbohidratos (g / 100 g)</label>
+          <input type="number" class="form-control" id="carbohidratos" name="carbohidratos" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label small fw-semibold text-secondary" for="grasas">Grasas (g / 100 g)</label>
+          <input type="number" class="form-control" id="grasas" name="grasas" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light border" (click)="cerrar.emit()">Cancelar</button>
+        <button type="submit" class="btn btn-dino">Guardar alimento</button>
+      </div>
     </form>
-   </div> 
+  </div>
 </div>

@@ -1,1 +1,30 @@
-<p>alimento-page-component works!</p>
+<div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+  <div>
+    <h1 class="h2 fw-bold mb-0">Catálogo nutricional</h1>
+    <p class="text-secondary mb-0">Gestiona los ingredientes y añádelos rápidamente a los planes de tus clientes.</p>
+  </div>  
+  <button type="button" class="btn btn-dino" (click)="abrirAlta()"><i class="bi bi-plus-lg me-2"></i>Añadir elemento</button>
+</div>
+
+<div class="card card-body rounded-3">
+    <table class="table table-hover align-middle mb-0">
+    <thead class="table-light"><tr><th>Alimento</th><th>kcal / 100 g</th><th>P (g)</th><th>C (g)</th><th>G (g)</th><th>Gestión</th></tr></thead>
+    <tbody>
+        @for (elemento of alimentos; track elemento.id) {
+            <tr>
+                <td><strong>{{elemento.nombre}}</strong></td>
+                <td>{{elemento.kcal}}</td>
+                <td>{{elemento.proteinas}}</td>
+                <td>{{elemento.carbohidratos}}</td>
+                <td>{{elemento.grasas}}</td>
+                <td>
+            <button type="button" class="btn btn-link btn-sm text-secondary" (click)="abrirEdicion()"><i class="bi bi-pencil"></i></button>
+            <button type="button" class="btn btn-link btn-sm text-danger" (click)="pedirEliminar()"><i class="bi bi-trash3-fill"></i></button>
+          </td>
+            </tr>
+        }
+    </tbody>
+    </table>
+</div>
+
+<!-- if de modales -->
