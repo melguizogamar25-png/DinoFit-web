@@ -1,36 +1,90 @@
 <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
   <div>
-    <h1 class="h2 fw-bold mb-0">Catálogo nutricional</h1>
+    <h1 class="h2 fw-bold mb-1">Catálogo nutricional</h1>
     <p class="text-secondary mb-0">Gestiona los ingredientes y añádelos rápidamente a los planes de tus clientes.</p>
-  </div>  
-  <button type="button" class="btn btn-dino" (click)="abrirAlta()"><i class="bi bi-plus-lg me-2"></i>Añadir elemento</button>
+  </div>
+  <button type="button" class="btn btn-dino" (click)="abrirAlta()"><i class="bi bi-plus-lg me-2"></i>Añadir alimento</button>
+</div>
+<div class="row g-3 mb-4">
+  <div class="col-12 col-lg">
+    <div class="input-group">
+      <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
+      <input type="text" class="form-control border-start-0" placeholder="Buscar alimento o ingrediente…">
+    </div>
+  </div>
+  <div class="col-12 col-md-6 col-lg-auto">
+    <select class="form-select fw-medium">
+      <option value="">Todas las categorías</option>
+      <option>Aceites</option>
+      <option>Carnes</option>
+      <option>Cereales</option>
+      <option>Frutas</option>
+      <option>Frutos secos</option>
+      <option>Lácteos</option>
+      <option>Pescados</option>
+      <option>Tubérculos</option>
+      <option>Verduras</option>
+    </select>
+  </div>
+  <div class="col-12 col-md-6 col-lg-auto">
+    <button type="button" class="btn btn-light bg-white border fw-medium w-100">
+      <i class="bi bi-sort-alpha-down me-2"></i>Ordenar por nombre
+    </button>
+  </div>
 </div>
 
-<div class="card card-body rounded-3">
-    <table class="table table-hover align-middle mb-0">
-    <thead class="table-light"><tr><th>Alimento</th><th>kcal / 100 g</th><th>P (g)</th><th>C (g)</th><th>G (g)</th><th>Gestión</th></tr></thead>
-    <tbody>
-        @for (elemento of alimentos; track elemento.id) {
+<div class="row justify-content-center">
+  <div class="col-12 col-xl-9">
+    <div class="card card-body rounded-4 p-4">
+      <h2 class="h5 fw-bold mb-1">Alimentos e ingredientes</h2>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-light small text-secondary">
             <tr>
-                <td><strong>{{elemento.nombre}}</strong></td>
-                <td>{{elemento.kcal}}</td>
-                <td>{{elemento.proteinas}}</td>
-                <td>{{elemento.carbohidratos}}</td>
-                <td>{{elemento.grasas}}</td>
-                <td>
-            <button type="button" class="btn btn-link btn-sm text-secondary" (click)="abrirEdicion()"><i class="bi bi-pencil"></i></button>
-            <button type="button" class="btn btn-link btn-sm text-danger" (click)="pedirEliminar()"><i class="bi bi-trash3-fill"></i></button>
-          </td>
+              <th class="py-3">ALIMENTO</th>
+              <th class="py-3">CATEGORÍA</th>
+              <th class="py-3">kcal / 100 g</th>
+              <th class="py-3">P (g) / 100 g</th>
+              <th class="py-3">C (g) / 100 g</th>
+              <th class="py-3">G (g) / 100 g</th>
+              <th class="py-3">GESTIÓN</th>
             </tr>
-        }
-    </tbody>
-    </table>
+          </thead>
+          <tbody>
+            @for (alimento of alimentos; track alimento.id) {
+              <tr>
+                <td class="py-3"><strong>{{ alimento.nombre }}</strong></td>
+                <td class="py-3 small text-secondary">{{ alimento.categoria }}</td>
+                <td class="py-3">{{ alimento.kcal }}</td>
+                <td class="py-3">{{ alimento.proteinas }}</td>
+                <td class="py-3">{{ alimento.carbohidratos }}</td>
+                <td class="py-3">{{ alimento.grasas }}</td>
+                <td class="py-3">
+                  <button type="button" class="btn btn-link btn-sm text-secondary" (click)="abrirEdicion()"><i class="bi bi-pencil"></i></button>
+                  <button type="button" class="btn btn-link btn-sm text-danger" (click)="pedirEliminar()"><i class="bi bi-trash3-fill"></i></button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mt-4">
+        <span class="small text-secondary">Mostrando 1–{{ alimentos.length }} de 248 alimentos</span>
+        <div class="d-flex align-items-center gap-2">
+          <button type="button" class="btn btn-light bg-white border btn-sm fw-medium">Anterior</button>
+          <span class="badge bg-warning-subtle text-warning-emphasis">1</span>
+          <span class="small text-secondary">2 · 3 · … · 21</span>
+          <button type="button" class="btn btn-light bg-white border btn-sm fw-medium">Siguiente</button>
+        </div>
+      </div>
+  </div>
 </div>
 
 @if (mostrarModal) {
-    <app-alimento-modal-components [esEdicion]="esEdicion" (guardar)="guardar()" (cerrar)="mostrarModal = false"></app-alimento-modal-components>
+  <app-alimento-modal-components [esEdicion]="esEdicion" (guardar)="guardar()" (cerrar)="mostrarModal = false"></app-alimento-modal-components>
 }
 
 @if (mostrarEliminar) {
-    <app-confirm-delete-modal-component (respuesta)="responderEliminar($event)"></app-confirm-delete-modal-component>
+  <app-confirm-delete-modal-component (respuesta)="responderEliminar($event)"></app-confirm-delete-modal-component>
 }

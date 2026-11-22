@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class AlimentoModalComponents {
 
-  @Input() esEdicion = false;
+ @Input() esEdicion = false;
 
   @Output() guardar = new EventEmitter<void>();
   @Output() cerrar = new EventEmitter<void>();

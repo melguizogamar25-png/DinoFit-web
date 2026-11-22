@@ -1,36 +1,88 @@
 <div class="modal-backdrop fade show"></div>
 <div class="modal fade show d-block" tabindex="-1" (click)="cerrar.emit()">
-  <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable" (click)="$event.stopPropagation()">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" (click)="$event.stopPropagation()">
     <form class="modal-content border-0 rounded-4" (ngSubmit)="guardar.emit()">
       <div class="modal-header">
-        <h2 class="modal-title fw-bold h4">{{ esEdicion ? 'Editar alimento' : 'Añadir alimento' }}</h2>
+        <div>
+          <h2 class="modal-title fw-bold h4">{{ esEdicion ? 'Editar alimento' : 'Añadir alimento' }}</h2>
+        </div>
         <button type="button" class="btn-close" aria-label="Cerrar" (click)="cerrar.emit()"></button>
       </div>
-      <div class="modal-body row g-3">
-        <div class="col-md-12">
-          <label class="form-label small fw-semibold text-secondary" for="nombre">Nombre del alimento</label>
-          <input type="text" class="form-control" id="nombre" name="nombre" required>
+
+      <div class="modal-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h3 class="h5 fw-bold mb-0">Información del alimento</h3>
+          <small class="text-secondary">* Campos obligatorios</small>
         </div>
-        <div class="col-md-6">
-          <label class="form-label small fw-semibold text-secondary" for="kcal">Energía (kcal / 100 g)</label>
-          <input type="number" class="form-control" id="kcal" name="kcal" required>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label fw-medium" for="nombre">Nombre de alimento *</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej. Pechuga de pollo" [value]="esEdicion ? 'Pechuga de pollo' : ''">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-medium" for="categoria">Categoría *</label>
+            <select class="form-select" id="categoria" name="categoria">
+              <option [selected]="!esEdicion" disabled>Selecciona una categoría</option>
+              <option>Aceites</option>
+              <option [selected]="esEdicion">Carnes</option>
+              <option>Cereales</option>
+              <option>Frutas</option>
+              <option>Frutos secos</option>
+              <option>Lácteos</option>
+              <option>Pescados</option>
+              <option>Tubérculos</option>
+              <option>Verduras</option>
+            </select>
+          </div>
         </div>
-        <div class="col-md-6">
-          <label class="form-label small fw-semibold text-secondary" for="proteinas">Proteínas (g / 100 g)</label>
-          <input type="number" class="form-control" id="proteinas" name="proteinas" required>
+
+        <hr class="my-4">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label fw-medium" for="kcal">Energía *</label>
+            <div class="input-group">
+              <input type="number" step="any" min="0" class="form-control border-end-0" id="kcal" name="kcal" placeholder="Ej. 120" [value]="esEdicion ? '110' : ''">
+              <span class="input-group-text bg-white border-start-0 text-secondary">kcal</span>
+            </div>
+            <div class="form-text">Kilocalorías por cada 100 g</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-medium" for="proteinas">Proteínas *</label>
+            <div class="input-group">
+              <input type="number" step="any" min="0" class="form-control border-end-0" id="proteinas" name="proteinas" placeholder="Ej. 22,5" [value]="esEdicion ? '23' : ''">
+              <span class="input-group-text bg-white border-start-0 text-secondary">g</span>
+            </div>
+            <div class="form-text">Gramos por cada 100 g</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-medium" for="carbohidratos">Carbohidratos *</label>
+            <div class="input-group">
+              <input type="number" step="any" min="0" class="form-control border-end-0" id="carbohidratos" name="carbohidratos" placeholder="Ej. 0" [value]="esEdicion ? '0' : ''">
+              <span class="input-group-text bg-white border-start-0 text-secondary">g</span>
+            </div>
+            <div class="form-text">Gramos por cada 100 g</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-medium" for="grasas">Grasas *</label>
+            <div class="input-group">
+              <input type="number" step="any" min="0" class="form-control border-end-0" id="grasas" name="grasas" placeholder="Ej. 3,3" [value]="esEdicion ? '2' : ''">
+              <span class="input-group-text bg-white border-start-0 text-secondary">g</span>
+            </div>
+            <div class="form-text">Gramos por cada 100 g</div>
+          </div>
         </div>
-        <div class="col-md-6">
-          <label class="form-label small fw-semibold text-secondary" for="carbohidratos">Carbohidratos (g / 100 g)</label>
-          <input type="number" class="form-control" id="carbohidratos" name="carbohidratos" required>
-        </div>
-        <div class="col-md-6">
-          <label class="form-label small fw-semibold text-secondary" for="grasas">Grasas (g / 100 g)</label>
-          <input type="number" class="form-control" id="grasas" name="grasas" required>
+
+        <div class="alert bg-light border-0 d-flex align-items-center gap-3 mt-4 mb-0">
+          <i class="bi bi-info-circle text-primary"></i>
+          <span>{{ esEdicion ? 'Los cambios se guardarán en este alimento del catálogo nutricional.' : 'El alimento estará disponible en el catálogo para crear planes alimenticios.' }}</span>
         </div>
       </div>
+
       <div class="modal-footer">
-        <button type="button" class="btn btn-light border" (click)="cerrar.emit()">Cancelar</button>
-        <button type="submit" class="btn btn-dino">Guardar alimento</button>
+        <button type="button" class="btn btn-light bg-white border fw-medium" (click)="cerrar.emit()">Cancelar</button>
+        <button type="submit" class="btn btn-dino">
+          <i class="bi me-2" [class.bi-floppy]="esEdicion" [class.bi-plus-lg]="!esEdicion"></i>{{ esEdicion ? 'Guardar cambios' : 'Añadir alimento' }}
+        </button>
       </div>
     </form>
   </div>

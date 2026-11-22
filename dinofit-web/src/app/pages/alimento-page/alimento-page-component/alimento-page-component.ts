@@ -11,11 +11,11 @@ import { ConfirmDeleteModalComponent } from '../../../shared/confirm-delete-moda
 export class AlimentoPageComponent {
 
   alimentos = [
-    {id: 1, nombre: 'Avena en copos', kcal: 355, proteinas: 13, carbohidratos: 60, grasas: 7},
-    {id: 2, nombre: 'Yogur griego 0%', kcal: 56, proteinas: 10, carbohidratos: 4, grasas: 0},
-    {id: 3, nombre: 'Plátano', kcal: 96, proteinas: 1, carbohidratos: 23, grasas: 0},
-    {id: 4, nombre: 'Pechuga de pollo', kcal: 110, proteinas: 23, carbohidratos: 0, grasas: 2},
-    {id: 5, nombre: 'Brocoli', kcal: 28, proteinas: 3, carbohidratos: 4, grasas: 0}
+    {id: 1, nombre: 'Avena en copos', categoria: 'Cereales', kcal: 355, proteinas: 13, carbohidratos: 60, grasas: 7},
+    {id: 2, nombre: 'Yogur griego 0 %', categoria: 'Lácteos', kcal: 56, proteinas: 10, carbohidratos: 4, grasas: 0},
+    {id: 3, nombre: 'Plátano', categoria: 'Frutas', kcal: 96, proteinas: 1, carbohidratos: 23, grasas: 0},
+    {id: 4, nombre: 'Pechuga de pollo', categoria: 'Carnes', kcal: 110, proteinas: 23, carbohidratos: 0, grasas: 2},
+    {id: 5, nombre: 'Brócoli', categoria: 'Verduras', kcal: 28, proteinas: 3, carbohidratos: 4, grasas: 0},
   ];
 
   mostrarModal = false;
@@ -23,7 +23,7 @@ export class AlimentoPageComponent {
   mostrarEliminar = false;
 
   abrirAlta(): void {
-    this.esEdicion = true;
+    this.esEdicion = false;
     this.mostrarModal = true;
   }
 

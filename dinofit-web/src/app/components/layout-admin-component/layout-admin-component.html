@@ -1,6 +1,16 @@
 <div class="d-flex min-vh-100">
   <app-barra-lateral-component></app-barra-lateral-component>
-  <main class="flex-grow-1 p-4 overflow-x-auto">
-    <router-outlet></router-outlet>
-  </main>
+  <div class="flex-grow-1 d-flex flex-column overflow-x-auto">
+    <header class="bg-white border-bottom d-flex justify-content-between align-items-center px-4 py-4">
+      <span class="fw-medium">{{ titulo() }}</span>
+      <div class="d-flex align-items-center gap-3 border-start ps-4">
+        <div class="avatar-usuario rounded-circle d-flex align-items-center justify-content-center fw-bold">LM</div>
+        <span class="fw-medium">Laura Martínez</span>
+        <i class="bi bi-chevron-down text-secondary"></i>
+      </div>
+    </header>
+    <main class="flex-grow-1 p-4">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
 </div>
