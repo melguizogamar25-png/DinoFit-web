@@ -1,1 +1,66 @@
-<p>rutina-modal-component works!</p>
+<div class="modal-backdrop fade show"></div>
+<div class="modal fade show d-block" tabindex="-1" (click)="cerrar.emit()">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" (click)="$event.stopPropagation()">
+    <form class="modal-content border-0 rounded-4" (ngSubmit)="guardar.emit()">
+      <div class="modal-header">
+        <div>
+          <small class="text-secondary d-block">Rutinas / Biblioteca de ejercicios / Nuevo ejercicio</small>
+          <h2 class="modal-title fw-bold h4">Añadir nuevo ejercicio</h2>
+          <p class="text-secondary mb-0">Crea un ejercicio propio y guárdalo en tu biblioteca para utilizarlo en tus rutinas.</p>
+        </div>
+        <button type="button" class="btn-close" aria-label="Cerrar" (click)="cerrar.emit()"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h3 class="h5 fw-bold mb-0">Información del ejercicio</h3>
+          <small class="text-secondary">* Campos obligatorios</small>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label fw-medium" for="nombre">Nombre del ejercicio *</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej. Sentadilla con barra" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-medium" for="grupo">Grupo muscular principal *</label>
+            <select class="form-select" id="grupo" name="grupo" required>
+              <option selected disabled>Selecciona un grupo muscular</option>
+              <option>Pectoral</option>
+              <option>Dorsal</option>
+              <option>Cuádriceps</option>
+              <option>Isquiosurales</option>
+              <option>Deltoides</option>
+              <option>Bíceps</option>
+              <option>Tríceps</option>
+              <option>Core</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-medium" for="equipamiento">Equipamiento *</label>
+            <select class="form-select" id="equipamiento" name="equipamiento" required>
+              <option selected disabled>Selecciona el equipamiento</option>
+              <option>Barra</option>
+              <option>Mancuernas</option>
+              <option>Polea</option>
+              <option>Máquina</option>
+              <option>Esterilla</option>
+              <option>Sin equipamiento</option>
+            </select>
+            <div class="form-text">Elige «Sin equipamiento» para ejercicios con peso corporal.</div>
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-medium" for="instrucciones">Instrucciones de ejecución *</label>
+            <textarea class="form-control" id="instrucciones" name="instrucciones" rows="5" placeholder="Ej. Coloca los pies al ancho de los hombros. Flexiona las rodillas manteniendo la espalda recta y vuelve a la posición inicial." required></textarea>
+            <div class="form-text">Describe la posición inicial, el movimiento y las recomendaciones de técnica.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light bg-white border fw-medium" (click)="cerrar.emit()">Cancelar</button>
+        <button type="submit" class="btn btn-dino"><i class="bi bi-floppy me-2"></i>Guardar ejercicio</button>
+      </div>
+    </form>
+  </div>
+</div>

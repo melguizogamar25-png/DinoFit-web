@@ -1,0 +1,6 @@
+.table-hover { --bs-table-hover-bg: #fff0e0; }
+.fila-seleccionada { --bs-table-bg: #fff0e0; }
+.form-check-input:checked { 
+    background-color: #e07b12; 
+    border-color: #e07b12; 
+}

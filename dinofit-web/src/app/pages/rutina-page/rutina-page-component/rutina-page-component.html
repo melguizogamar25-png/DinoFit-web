@@ -1,1 +1,143 @@
-<p>rutina-page-component works!</p>
+<!-- Cabecera -->
+<div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+  <div>
+    <h1 class="h2 fw-bold mb-1">Rutinas</h1>
+  </div>
+  <button type="button" class="btn btn-dino"><i class="bi bi-floppy me-2"></i>Guardar Rutina</button>
+</div>
+<div class="card card-body rounded-4 p-4 mb-4">
+  <div class="row g-3 align-items-end">
+    <div class="col-12 col-md-6 col-xl-3">
+      <label class="form-label small fw-medium text-secondary" for="cliente">Cliente</label>
+      <select class="form-select" id="cliente">
+        <option>Alejandro Ruiz</option>
+        <option>Marta García</option>
+        <option>Diego López</option>
+        <option>Lucía Sánchez</option>
+      </select>
+    </div>
+    <div class="col-12 col-md-6 col-xl-4">
+      <label class="form-label small fw-medium text-secondary" for="nombreRutina">Nombre de la rutina</label>
+      <input type="text" class="form-control" id="nombreRutina" value="Fuerza · 4 días">
+    </div>
+    <div class="col-12 col-md-6 col-xl-3">
+      <label class="form-label small fw-medium text-secondary" for="semana">Semana</label>
+      <div class="input-group">
+        <span class="input-group-text bg-white border-end-0"><i class="bi bi-calendar3"></i></span>
+        <input type="text" class="form-control border-start-0" id="semana" value="05–11 oct 2026 · Semana 6">
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-xl-2">
+      <small class="d-block text-secondary mb-2">Estado de semana</small>
+      <span class="badge bg-success-subtle text-success-emphasis fw-medium py-2">Abierta · En edición</span>
+    </div>
+  </div>
+</div>
+<div class="dias-semana mb-4">
+  @for (dia of dias; track dia.dia) {
+    <button type="button" class="btn text-start border rounded-3 p-3"
+            [class.bg-white]="dia.dia !== diaSeleccionado"
+            [class.bg-warning-subtle]="dia.dia === diaSeleccionado"
+            [class.border-warning]="dia.dia === diaSeleccionado"
+            [class.border-2]="dia.dia === diaSeleccionado"
+            (click)="diaSeleccionado = dia.dia">
+      <span class="d-flex justify-content-between align-items-center mb-2">
+        <strong>{{ dia.dia }}</strong>
+        <i class="bi" [class.bi-lock]="dia.cerrado" [class.bi-unlock]="!dia.cerrado" [class.text-secondary]="dia.cerrado" [class.text-success]="!dia.cerrado"></i>
+      </span>
+      <small class="d-block text-secondary mb-2">{{ dia.fecha }}</small>
+      <span class="d-block fw-semibold mb-2">{{ dia.nombre }}</span>
+      <small [class.text-secondary]="dia.cerrado" [class.text-success]="!dia.cerrado">{{ dia.estado }}</small>
+    </button>
+  }
+</div>
+<div class="row g-4">
+  <div class="col-12 col-xl-8">
+    <div class="card card-body rounded-4 p-4">
+      <div class="d-flex justify-content-between align-items-start gap-3 mb-4">
+        <div>
+          <h2 class="h4 fw-bold mb-1">Jueves · Torso B</h2>
+          <small class="text-secondary">08 oct 2026 · 4 ejercicios · Duración estimada 55 min</small>
+        </div>
+        <button type="button" class="btn btn-light bg-white border fw-medium text-nowrap"><i class="bi bi-lock me-2"></i>Cerrar día</button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table align-middle mb-0">
+          <thead class="table-light small text-secondary">
+            <tr>
+              <th class="py-3">EJERCICIO</th>
+              <th class="py-3">SERIES</th>
+              <th class="py-3">REPS</th>
+              <th class="py-3">kg</th>
+              <th class="py-3">DESC. (s)</th>
+              <th class="py-3">OBSERVACIÓN TÉCNICA</th>
+              <th class="py-3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (ejercicio of ejercicios; track ejercicio.id) {
+              <tr>
+                <td class="py-3">
+                  <div class="fw-semibold">{{ ejercicio.nombre }}</div>
+                  <small class="text-secondary">{{ ejercicio.detalle }}</small>
+                </td>
+                <td class="py-3"><input type="text" class="form-control campo-numero" [value]="ejercicio.series"></td>
+                <td class="py-3"><input type="text" class="form-control campo-numero" [value]="ejercicio.reps"></td>
+                <td class="py-3"><input type="text" class="form-control campo-numero" [value]="ejercicio.kg"></td>
+                <td class="py-3"><input type="text" class="form-control campo-numero" [value]="ejercicio.descanso"></td>
+                <td class="py-3 small text-secondary">{{ ejercicio.observacion }}</td>
+                <td class="py-3 text-end">
+                  <button type="button" class="btn btn-link btn-sm text-danger" (click)="pedirEliminar()"><i class="bi bi-trash3-fill"></i></button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <div class="my-4">
+        <button type="button" class="btn btn-primary fw-medium" (click)="abrirAlta()"><i class="bi bi-plus-lg me-2"></i>Añadir ejercicio desde biblioteca</button>
+      </div>
+
+      <label class="form-label small fw-medium text-secondary" for="observacionesDia">Observaciones del día</label>
+      <input type="text" class="form-control" id="observacionesDia" value="Calentamiento: 8 min + 2 series de aproximación. Trabajar con 2 repeticiones en reserva.">
+    </div>
+  </div>
+  <div class="col-12 col-xl-4">
+    <div class="card card-body rounded-4 p-4">
+      <h2 class="h4 fw-bold mb-1">Biblioteca de ejercicios</h2>
+      <small class="text-secondary mb-3">Inserta ejercicios en el día seleccionado</small>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
+        <input type="text" class="form-control border-start-0" placeholder="Buscar ejercicio…">
+      </div>
+      <div class="mb-3">
+        <span class="badge bg-secondary-subtle text-secondary-emphasis fw-medium">Todos los grupos musculares <i class="bi bi-arrow-down"></i></span>
+      </div>
+
+      @for (item of biblioteca; track item.nombre) {
+        <div class="d-flex justify-content-between align-items-center py-2">
+          <div>
+            <div class="fw-semibold">{{ item.nombre }}</div>
+            <small class="text-secondary">{{ item.detalle }}</small>
+          </div>
+          <i class="bi bi-plus-circle fs-4 text-primary"></i>
+        </div>
+      }
+
+      <hr>
+      <a routerLink="/ejercicios" class="text-primary text-decoration-none fw-medium">Abrir biblioteca completa</a>
+    </div>
+  </div>
+</div>
+
+@if (mostrarModal) {
+  <app-rutina-modal-component (guardar)="guardar()" (cerrar)="mostrarModal = false"></app-rutina-modal-component>
+}
+
+@if (mostrarEliminar) {
+  <app-confirm-delete-modal-component (respuesta)="responderEliminar($event)"></app-confirm-delete-modal-component>
+}
+

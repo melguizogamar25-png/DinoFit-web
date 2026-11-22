@@ -52,7 +52,7 @@
             </thead>
             <tbody>
               @for (alimento of alimentos; track alimento.id) {
-                <tr>
+                <tr [class.fila-seleccionada]="alimento.nombre === 'Almendras'">
                   <td class="py-2"><input class="form-check-input" type="radio" name="alimento" [checked]="alimento.nombre === 'Almendras'"></td>
                   <td class="py-2"><strong>{{ alimento.nombre }}</strong></td>
                   <td class="py-2 small text-secondary">{{ alimento.categoria }}</td>

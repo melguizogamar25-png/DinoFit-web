@@ -1,0 +1,6 @@
+.dias-semana { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr)); 
+    gap: 0.75rem; 
+}
+.campo-numero { width: 4.5rem; }

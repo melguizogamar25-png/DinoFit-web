@@ -12,14 +12,14 @@ import { ConfirmDeleteModalComponent } from '../../../shared/confirm-delete-moda
 })
 export class DietasPageComponent {
 
-  dias = [
-    {etiqueta: 'Lun 05', estado: 'Cerrado', cerrado: true},
-    {etiqueta: 'Mar 06', estado: 'Cerrado', cerrado: true},
-    {etiqueta: 'Mié 07', estado: 'Cerrado', cerrado: true},
-    {etiqueta: 'Jue 08', estado: 'Abierto', cerrado: false},
-    {etiqueta: 'Vie 09', estado: 'Abierto', cerrado: false},
-    {etiqueta: 'Sáb 10', estado: 'Bloqueado', cerrado: true},
-    {etiqueta: 'Dom 11', estado: 'Abierto', cerrado: false},
+dias = [
+    {dia: 'Lun', fecha: '05 oct', etiqueta: 'Lun 05', estado: 'Cerrado', cerrado: true},
+    {dia: 'Mar', fecha: '06 oct', etiqueta: 'Mar 06', estado: 'Cerrado', cerrado: true},
+    {dia: 'Mié', fecha: '07 oct', etiqueta: 'Mié 07', estado: 'Cerrado', cerrado: true},
+    {dia: 'Jue', fecha: '08 oct', etiqueta: 'Jue 08', estado: 'Abierto', cerrado: false},
+    {dia: 'Vie', fecha: '09 oct', etiqueta: 'Vie 09', estado: 'Abierto', cerrado: false},
+    {dia: 'Sáb', fecha: '10 oct', etiqueta: 'Sáb 10', estado: 'Bloqueado', cerrado: true},
+    {dia: 'Dom', fecha: '11 oct', etiqueta: 'Dom 11', estado: 'Abierto', cerrado: false},
   ];
   diaSeleccionado = 'Jue 08';
 
