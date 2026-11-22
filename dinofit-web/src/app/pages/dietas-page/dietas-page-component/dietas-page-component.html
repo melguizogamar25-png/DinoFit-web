@@ -1,1 +1,151 @@
-<p>dietas-page-component works!</p>
+<div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+  <div>
+    <h1 class="h2 fw-bold mb-1">Diseñador de dietas</h1>
+  </div>
+  <button type="button" class="btn btn-light bg-white border fw-medium"><i class="bi bi-floppy me-2"></i>Guardar Dieta</button>
+</div>
+<div class="card card-body rounded-4 p-4 mb-4">
+  <div class="row g-3">
+    <div class="col-12 col-md-3">
+      <label class="form-label small fw-medium text-secondary" for="cliente">Cliente</label>
+      <select class="form-select" id="cliente">
+        <option>Alejandro Ruiz</option>
+        <option>Marta García</option>
+        <option>Diego López</option>
+        <option>Lucía Sánchez</option>
+      </select>
+    </div>
+    <div class="col-12 col-md-4">
+      <label class="form-label small fw-medium text-secondary" for="nombrePlan">Nombre del plan</label>
+      <input type="text" class="form-control" id="nombrePlan" value="Plan equilibrado">
+    </div>
+    <div class="col-12 col-md-3">
+      <label class="form-label small fw-medium text-secondary" for="diaPlan">Día del plan</label>
+      <div class="input-group">
+        <span class="input-group-text bg-white border-end-0"><i class="bi bi-calendar3"></i></span>
+        <input type="text" class="form-control border-start-0" id="diaPlan" value="Jueves · 08 oct 2026">
+      </div>
+    </div>
+    <div class="col-12 col-md-2">
+      <label class="form-label small fw-medium text-secondary" for="vigencia">Vigencia</label>
+      <input type="text" class="form-control" id="vigencia" value="05–11 oct 2026">
+    </div>
+  </div>
+</div>
+<div class="dias-semana mb-4">
+  @for (dia of dias; track dia.etiqueta) {
+    <div>
+      <button type="button" class="btn w-100 text-start bg-white border rounded-3 py-2"
+              [class.border-warning]="dia.etiqueta === diaSeleccionado"
+              [class.bg-warning-subtle]="dia.etiqueta === diaSeleccionado"
+              (click)="diaSeleccionado = dia.etiqueta">
+        <span class="d-flex justify-content-between align-items-center">
+          <strong class="small">{{ dia.etiqueta }}</strong>
+          <i class="bi" [class.bi-lock]="dia.cerrado" [class.bi-unlock]="!dia.cerrado" [class.text-success]="!dia.cerrado"></i>
+        </span>
+        <small [class.text-success]="!dia.cerrado" [class.text-secondary]="dia.cerrado">{{ dia.estado }}</small>
+      </button>
+    </div>
+  }
+</div>
+<div class="row g-4">
+  <div class="col-12 col-xl-8 d-flex flex-column gap-4">
+    @for (comida of comidas; track comida.nombre) {
+      <div class="card card-body rounded-4 p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="d-flex align-items-center gap-2">
+            <h2 class="h5 fw-bold mb-0">{{ comida.nombre }}</h2>
+            <span class="badge text-bg-light fw-medium">{{ comida.hora }}</span>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <strong class="text-warning-emphasis">{{ comida.kcal }} kcal</strong>
+            <i class="bi bi-three-dots text-secondary"></i>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table align-middle mb-0">
+            <thead class="table-light small text-secondary">
+              <tr>
+                <th class="py-3">INGREDIENTE</th>
+                <th class="py-3">CANTIDAD</th>
+                <th class="py-3">kcal</th>
+                <th class="py-3">P (g)</th>
+                <th class="py-3">C (g)</th>
+                <th class="py-3">G (g)</th>
+                <th class="py-3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (ingrediente of comida.ingredientes; track ingrediente.id) {
+                <tr>
+                  <td class="py-3">{{ ingrediente.nombre }}</td>
+                  <td class="py-3">{{ ingrediente.cantidad }}</td>
+                  <td class="py-3">{{ ingrediente.kcal }}</td>
+                  <td class="py-3">{{ ingrediente.proteinas }}</td>
+                  <td class="py-3">{{ ingrediente.carbohidratos }}</td>
+                  <td class="py-3">{{ ingrediente.grasas }}</td>
+                  <td class="py-3 text-end">
+                    <button type="button" class="btn btn-link btn-sm text-secondary" (click)="pedirEliminar()"><i class="bi bi-trash3"></i></button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <small class="text-secondary">{{ comida.resumen }}</small>
+          <button type="button" class="btn btn-link btn-sm text-primary fw-medium text-decoration-none" (click)="abrirAlta(comida.nombre + ' · ' + comida.hora)">
+            <i class="bi bi-plus-lg me-1"></i>Añadir ingrediente
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+  <div class="col-12 col-xl-4 d-flex flex-column gap-4 align-self-start">
+    <div class="card card-body rounded-4 p-4 flex-grow-0">
+      <h2 class="h5 fw-bold mb-1">Balance del día</h2>
+      <div class="display-6 fw-bold">1.696,7 kcal</div>
+
+      <div class="d-flex justify-content-between small"><span class="text-secondary">Proteínas</span><strong>141,7 g</strong></div>
+      <div class="progress mb-3" style="height: 6px"><div class="progress-bar bg-warning" style="width: 35%"></div></div>
+      <div class="d-flex justify-content-between small"><span class="text-secondary">Carbohidratos</span><strong>173,8 g</strong></div>
+      <div class="progress mb-3" style="height: 6px"><div class="progress-bar bg-primary" style="width: 45%"></div></div>
+      <div class="d-flex justify-content-between small"><span class="text-secondary">Grasas</span><strong>48,3 g</strong></div>
+      <div class="progress mb-3" style="height: 6px"><div class="progress-bar bg-success" style="width: 25%"></div></div>
+    </div>
+
+    <div class="card card-body rounded-4 p-4 flex-grow-0">
+      <h2 class="h5 fw-bold mb-1">Catálogo nutricional</h2>
+      <p class="small text-secondary">Busca alimentos y añádelos a la comida seleccionada con la cantidad que necesites.</p>
+      <div>
+        <a routerLink="/alimentos" class="btn btn-primary fw-medium"><i class="bi bi-apple me-2"></i>Abrir catálogo</a>
+      </div>
+      <small class="text-secondary mt-3">Cantidades en crudo, excepto yogur y aceite listos para consumir.</small>
+    </div>
+
+    <div class="card card-body rounded-4 p-4 flex-grow-0">
+      <h2 class="h5 fw-bold mb-3">Indicaciones</h2>
+      <p class="small text-secondary">{{ observaciones }}</p>
+      <div>
+        <button type="button" class="btn btn-link btn-sm text-primary fw-medium text-decoration-none ps-0" (click)="abrirEdicion()">
+          <i class="bi bi-pencil me-2"></i>Editar observaciones
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@if (mostrarIngrediente) {
+  <app-ingrediente-modal-component [comida]="comidaSeleccionada" (guardar)="guardarIngrediente()" (cerrar)="mostrarIngrediente = false"></app-ingrediente-modal-component>
+}
+
+@if (mostrarObservaciones) {
+  <app-dieta-modal-component [observaciones]="observaciones" (guardar)="guardarObservaciones()" (cerrar)="mostrarObservaciones = false"></app-dieta-modal-component>
+}
+
+@if (mostrarEliminar) {
+  <app-confirm-delete-modal-component (respuesta)="responderEliminar($event)"></app-confirm-delete-modal-component>
+}
+

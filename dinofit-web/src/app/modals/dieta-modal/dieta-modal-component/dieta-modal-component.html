@@ -1,1 +1,23 @@
-<p>dieta-modal-component works!</p>
+<div class="modal-backdrop fade show"></div>
+<div class="modal fade show d-block" tabindex="-1" (click)="cerrar.emit()">
+  <div class="modal-dialog modal-dialog-centered" (click)="$event.stopPropagation()">
+    <form class="modal-content border-0 rounded-4" (ngSubmit)="guardar.emit()">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title fw-bold h4">Editar observaciones</h2>
+          <small class="text-secondary">Plan equilibrado · Alejandro Ruiz</small>
+        </div>
+        <button type="button" class="btn-close" aria-label="Cerrar" (click)="cerrar.emit()"></button>
+      </div>
+      <div class="modal-body">
+        <label class="form-label fw-medium" for="observaciones">Observaciones</label>
+        <textarea class="form-control" id="observaciones" name="observaciones" rows="5">{{ observaciones }}</textarea>
+        <div class="form-text">Edita las indicaciones que acompañan al plan de dieta.</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light bg-white border fw-medium" (click)="cerrar.emit()">Cancelar</button>
+        <button type="submit" class="btn btn-primary fw-medium">Guardar cambios</button>
+      </div>
+    </form>
+  </div>
+</div>
