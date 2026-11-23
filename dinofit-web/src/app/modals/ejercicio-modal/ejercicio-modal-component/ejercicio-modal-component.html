@@ -5,14 +5,12 @@
       <div class="modal-header">
         <div>
           <h2 class="modal-title fw-bold h4">{{ esEdicion ? 'Editar ejercicio' : 'Añadir nuevo ejercicio' }}</h2>
-          <p class="text-secondary mb-0">{{ esEdicion ? 'Modifica los datos del movimiento de tu biblioteca de ejercicios.' : 'Define los datos del movimiento para incorporarlo a tu biblioteca de ejercicios.' }}</p>
         </div>
         <button type="button" class="btn-close" aria-label="Cerrar" (click)="cerrar.emit()"></button>
       </div>
 
       <div class="modal-body">
         <h3 class="h5 fw-bold mb-1">Datos del ejercicio</h3>
-        <p class="text-secondary">Completa el nombre, la zona muscular y el equipamiento necesario.</p>
 
         <div class="row g-3">
           <div class="col-12">
