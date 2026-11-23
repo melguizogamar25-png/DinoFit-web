@@ -1,0 +1,6 @@
+.table-hover { --bs-table-hover-bg: #fff0e0; }
+.fila-seleccionada { --bs-table-bg: #fff0e0; }
+.numero-paso { 
+    width: 1.75rem; 
+    height: 1.75rem; 
+}

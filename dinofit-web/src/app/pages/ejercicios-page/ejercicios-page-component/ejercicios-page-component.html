@@ -1,1 +1,130 @@
-<p>ejercicios-page-component works!</p>
+<div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+  <div>
+    <h1 class="h2 fw-bold mb-1">Biblioteca de ejercicios</h1>
+    <p class="text-secondary mb-0">Tu base de movimientos, técnica y recursos para construir mejores rutinas.</p>
+  </div>
+  <button type="button" class="btn btn-primary fw-medium" (click)="abrirAlta()"><i class="bi bi-plus-lg me-2"></i>Añadir Nuevo Ejercicio</button>
+</div>
+<div class="row g-3 mb-4">
+  <div class="col-12 col-lg">
+    <div class="input-group">
+      <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
+      <input type="text" class="form-control border-start-0" placeholder="Buscar ejercicio por nombre…">
+    </div>
+  </div>
+  <div class="col-12 col-md-6 col-lg-auto">
+    <select class="form-select fw-medium">
+      <option>Grupo muscular: todos</option>
+      <option>Pectoral</option>
+      <option>Dorsal</option>
+      <option>Cuádriceps</option>
+      <option>Isquiosurales</option>
+      <option>Deltoides</option>
+      <option>Bíceps</option>
+      <option>Core</option>
+    </select>
+  </div>
+  <div class="col-12 col-md-6 col-lg-auto">
+    <select class="form-select fw-medium">
+      <option>Equipamiento: todo</option>
+      <option>Barra</option>
+      <option>Mancuernas</option>
+      <option>Polea</option>
+      <option>Esterilla</option>
+    </select>
+  </div>
+  <div class="col-12 col-lg-auto">
+    <button type="button" class="btn btn-primary fw-medium w-100"><i class="bi bi-sliders me-2"></i>Filtrar</button>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-12 col-xl-7">
+    <div class="card card-body rounded-4 p-4">
+      <h2 class="h5 fw-bold mb-1">Ejercicios disponibles</h2>
+      <small class="text-secondary mb-3">64 movimientos · Biblioteca del equipo</small>
+
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-light small text-secondary">
+            <tr>
+              <th class="py-3">NOMBRE</th>
+              <th class="py-3">ZONA</th>
+              <th class="py-3">EQUIPAMIENTO</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (ejercicio of ejercicios; track ejercicio.id) {
+              <tr [class.fila-seleccionada]="ejercicio.id === 1">
+                <td class="py-3"><strong>{{ ejercicio.nombre }}</strong></td>
+                <td class="py-3">{{ ejercicio.zona }}</td>
+                <td class="py-3">{{ ejercicio.equipamiento }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mt-4">
+        <span class="small text-secondary">Mostrando 1–8 de 64 ejercicios</span>
+        <div class="d-flex align-items-center gap-2">
+          <button type="button" class="btn btn-light bg-white border btn-sm fw-medium">Anterior</button>
+          <span class="badge bg-warning-subtle text-warning-emphasis">1</span>
+          <span class="small text-secondary">2 · 3 · … · 8</span>
+          <button type="button" class="btn btn-light bg-white border btn-sm fw-medium">Siguiente</button>
+        </div>
+      </div>
+
+      <div class="bg-primary-subtle rounded-3 p-3 mt-4">
+        <div class="fw-semibold mb-1">Una técnica clara para cada movimiento</div>
+        <small class="text-secondary">Selecciona un ejercicio para consultar sus instrucciones, editar sus datos o insertarlo directamente en una rutina.</small>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-xl-5">
+    <div class="card card-body rounded-4 p-4">
+      <h2 class="h5 fw-bold mb-1">Press de banca</h2>
+      <small class="text-secondary mb-3">Detalle del ejercicio seleccionado</small>
+
+      <div class="d-flex flex-wrap gap-2 mb-3">
+        <span class="badge bg-warning-subtle text-warning-emphasis fw-medium">Pectoral</span>
+        <span class="badge bg-secondary-subtle text-secondary-emphasis fw-medium">Barra + banco</span>
+        <span class="badge bg-primary-subtle text-primary fw-medium">Intermedio</span>
+      </div>
+
+      <div class="ratio ratio-16x9 bg-secondary-subtle rounded-3 mb-3">
+        <div class="d-flex align-items-center justify-content-center">
+          <i class="bi bi-play-circle-fill display-3 text-primary"></i>
+        </div>
+      </div>
+      <small class="text-secondary">Vídeo demostrativo · Enlace de ejemplo</small>
+      <a class="text-primary text-decoration-none fw-medium" href="#" (click)="$event.preventDefault()">videos.dinofit.es/press-banca <i class="bi bi-box-arrow-up-right small"></i></a>
+
+      <hr>
+      <h3 class="h6 fw-bold mb-3">Instrucciones de ejecución</h3>
+      @for (paso of instrucciones; track paso; let i = $index) {
+        <div class="d-flex gap-3 mb-3">
+          <span class="numero-paso rounded-circle bg-body-secondary d-flex align-items-center justify-content-center small fw-bold flex-shrink-0">{{ i + 1 }}</span>
+          <span class="text-secondary">{{ paso }}</span>
+        </div>
+      }
+
+      <div class="bg-warning-subtle text-warning-emphasis rounded-3 p-3 small mb-3">
+        Evita abrir los codos a 90°. Usa un compañero de seguridad con cargas altas.
+      </div>
+
+      <div class="d-flex gap-2">
+        <button type="button" class="btn btn-light bg-white border fw-medium" (click)="abrirEdicion()"><i class="bi bi-pencil me-2"></i>Editar</button>
+        <button type="button" class="btn btn-light bg-white border fw-medium text-danger" (click)="pedirEliminar()"><i class="bi bi-trash3 me-2"></i>Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@if (mostrarModal) {
+  <app-ejercicio-modal-component [esEdicion]="esEdicion" (guardar)="guardar()" (cerrar)="mostrarModal = false"></app-ejercicio-modal-component>
+}
+
+@if (mostrarEliminar) {
+  <app-confirm-delete-modal-component (respuesta)="responderEliminar($event)"></app-confirm-delete-modal-component>
+}

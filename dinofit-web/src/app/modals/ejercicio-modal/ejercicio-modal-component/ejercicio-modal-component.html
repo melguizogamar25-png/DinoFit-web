@@ -1,1 +1,57 @@
-<p>ejercicio-modal-component works!</p>
+<div class="modal-backdrop fade show"></div>
+<div class="modal fade show d-block" tabindex="-1" (click)="cerrar.emit()">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" (click)="$event.stopPropagation()">
+    <form class="modal-content border-0 rounded-4" (ngSubmit)="guardar.emit()">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title fw-bold h4">{{ esEdicion ? 'Editar ejercicio' : 'Añadir nuevo ejercicio' }}</h2>
+          <p class="text-secondary mb-0">{{ esEdicion ? 'Modifica los datos del movimiento de tu biblioteca de ejercicios.' : 'Define los datos del movimiento para incorporarlo a tu biblioteca de ejercicios.' }}</p>
+        </div>
+        <button type="button" class="btn-close" aria-label="Cerrar" (click)="cerrar.emit()"></button>
+      </div>
+
+      <div class="modal-body">
+        <h3 class="h5 fw-bold mb-1">Datos del ejercicio</h3>
+        <p class="text-secondary">Completa el nombre, la zona muscular y el equipamiento necesario.</p>
+
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label fw-medium" for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej. Press de banca" [value]="esEdicion ? 'Press de banca' : ''" required>
+            <div class="form-text">Utiliza un nombre claro para identificar el ejercicio en tus rutinas.</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-medium" for="zona">Zona</label>
+            <select class="form-select" id="zona" name="zona" required>
+              <option [selected]="!esEdicion" disabled>Selecciona una zona</option>
+              <option [selected]="esEdicion">Pectoral</option>
+              <option>Dorsal</option>
+              <option>Cuádriceps</option>
+              <option>Isquiosurales</option>
+              <option>Deltoides</option>
+              <option>Bíceps</option>
+              <option>Tríceps</option>
+              <option>Core</option>
+              <option>Glúteos</option>
+            </select>
+            <div class="form-text">Desplázate para ver más zonas.</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-medium" for="equipamiento">Equipamiento</label>
+            <input type="text" class="form-control" id="equipamiento" name="equipamiento" placeholder="Ej. Barra + banco" [value]="esEdicion ? 'Barra + banco' : ''" required>
+            <div class="form-text">Indica el material necesario o escribe «Sin equipamiento».</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <small class="text-secondary me-auto">Se guardará en la Biblioteca de ejercicios.</small>
+        <button type="button" class="btn btn-light bg-white border fw-medium" (click)="cerrar.emit()">Cancelar</button>
+        <button type="submit" class="btn btn-primary fw-medium">
+          <i class="bi me-2" [class.bi-floppy]="esEdicion" [class.bi-plus-lg]="!esEdicion"></i>{{ esEdicion ? 'Guardar cambios' : 'Añadir ejercicio' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
