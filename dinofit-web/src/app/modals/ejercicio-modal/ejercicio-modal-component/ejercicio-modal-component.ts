@@ -13,4 +13,5 @@ export class EjercicioModalComponent {
 
   @Output() guardar = new EventEmitter<void>();
   @Output() cerrar = new EventEmitter<void>();
+  
 }
