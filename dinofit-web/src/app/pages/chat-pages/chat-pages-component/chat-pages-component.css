@@ -1,0 +1,14 @@
+.caja-chat { min-height: 640px; }
+.fila-conversacion-activa { background: #fff0e2; }
+.zona-mensajes { background: #f1f5f9; }
+.burbuja { max-width: 78%; }
+.burbuja-ajena { background: #fff; }
+.burbuja-propia { 
+    background: #e07b12; 
+    color: #fff; 
+}
+.archivo { background: rgba(255,255,255,.2); }
+.imagen-chat { 
+    max-width: 340px; 
+    width: 100%; 
+}

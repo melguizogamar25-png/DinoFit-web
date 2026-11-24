@@ -16,7 +16,7 @@ export const routes: Routes = [
     {
         path: '',
         component: LayoutAdminComponent,
-        children: [
+       children: [
             {path: 'inicio', component: InicioPagesComponent, data: {titulo: 'Inicio'}},
             {path: 'clientes', component: ClientesPageComponent, data: {titulo: 'Clientes'}},
             {path: 'rutinas', component: RutinaPageComponent, data: {titulo: 'Rutinas'}},

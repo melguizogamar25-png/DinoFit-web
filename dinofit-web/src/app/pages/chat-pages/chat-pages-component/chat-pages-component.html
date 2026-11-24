@@ -1,1 +1,93 @@
-<p>chat-pages-component works!</p>
+<div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+  <div>
+    <h1 class="display-6 fw-bold mb-1">Conversaciones</h1>
+    <p class="text-secondary mb-0">Acompaña a tus clientes y comparte sus planes sin salir del backoffice.</p>
+  </div>
+  <button type="button" class="btn btn-light bg-white border fw-semibold" (click)="abrirNueva()"><i class="bi bi-pencil-square me-2"></i>Nueva conversación</button>
+</div>
+
+<div class="tarjeta overflow-hidden">
+  <div class="row g-0 caja-chat">
+    <aside class="col-12 col-lg-4 border-end p-4">
+      <div class="input-group mb-3">
+        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
+        <input type="text" class="form-control border-start-0" placeholder="Buscar cliente…">
+      </div>
+      <div class="d-flex gap-2 mb-3">
+        <span class="etiqueta etiqueta-naranja">Todos · 128</span>
+        <span class="etiqueta etiqueta-gris">No leídos · 3</span>
+      </div>
+      @for (conversacion of conversaciones; track conversacion.id) {
+        <div class="d-flex align-items-center gap-3 p-3 rounded-3 mb-1" role="button"
+             [class.fila-conversacion-activa]="conversacion === conversacionActiva" (click)="seleccionar(conversacion)">
+          <div class="avatar-iniciales rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">{{ conversacion.iniciales }}</div>
+          <div class="flex-grow-1 overflow-hidden">
+            <div class="d-flex justify-content-between">
+              <strong>{{ conversacion.nombre }}</strong>
+              <small class="text-secondary">{{ conversacion.hora }}</small>
+            </div>
+            <small class="text-secondary text-truncate d-block">{{ conversacion.ultimo }}</small>
+          </div>
+          @if (conversacion.sinLeer > 0) {
+            <span class="badge rounded-2 bg-warning-subtle text-warning-emphasis">{{ conversacion.sinLeer }}</span>
+          }
+        </div>
+      }
+      <hr>
+    </aside>
+
+    <section class="col-12 col-lg-8 d-flex flex-column">
+      <div class="d-flex justify-content-between align-items-center p-3 px-4 border-bottom">
+        <div class="d-flex align-items-center gap-3">
+          <div class="avatar-iniciales rounded-circle d-flex align-items-center justify-content-center">{{ conversacionActiva.iniciales }}</div>
+          <div>
+            <strong class="d-block">{{ conversacionActiva.nombre }}</strong>
+            <small class="text-success">{{ conversacionActiva.estado }}</small>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <a routerLink="/clientes/1" class="text-primary fw-semibold text-decoration-none">Ver ficha</a>
+          <i class="bi bi-paperclip fs-5 text-primary"></i>
+          <i class="bi bi-three-dots-vertical fs-5 text-secondary"></i>
+        </div>
+      </div>
+
+      <div class="flex-grow-1 p-4 zona-mensajes">
+        <div class="text-center small text-secondary fw-medium mb-3">Hoy · 08 oct 2026</div>
+        @for (mensaje of conversacionActiva.mensajes; track $index) {
+          <div class="d-flex mb-3" [class.justify-content-end]="mensaje.de_entrenador">
+            <div class="burbuja p-3 rounded-2" [class.burbuja-propia]="mensaje.de_entrenador" [class.burbuja-ajena]="!mensaje.de_entrenador">
+              <div>{{ mensaje.texto }}</div>
+              @if ($any(mensaje).imagen) {
+                <img [src]="$any(mensaje).imagen" alt="Imagen enviada" class="rounded-2 mt-2 imagen-chat">
+              }
+              @if ($any(mensaje).archivo) {
+                <div class="archivo d-flex align-items-center gap-3 rounded-2 p-3 mt-2">
+                  <i class="bi bi-file-earmark-text fs-3"></i>
+                  <div class="flex-grow-1"><strong class="d-block">{{ $any(mensaje).archivo }}</strong><small>{{ $any(mensaje).detalleArchivo }}</small></div>
+                  <i class="bi bi-download fs-5"></i>
+                </div>
+              }
+              <div class="text-end small mt-2 opacity-75">{{ mensaje.hora }}</div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="border-top p-3 px-4">
+        <div class="d-flex align-items-center gap-3">
+          <i class="bi bi-image fs-4 text-primary"></i>
+          <i class="bi bi-paperclip fs-4 text-primary"></i>
+          <input type="text" class="form-control bg-light border-0 py-3" [placeholder]="'Escribe un mensaje para ' + conversacionActiva.nombre.split(' ')[0] + '…'">
+          <button type="button" class="btn btn-dino px-4 py-2"><i class="bi bi-send me-2"></i>Enviar</button>
+        </div>
+        <small class="text-secondary d-block mt-2">Adjuntar imagen o documento · Enter para enviar · Mayús + Enter para salto de línea</small>
+      </div>
+    </section>
+  </div>
+</div>
+
+@if (mostrarModal) {
+  <app-nueva-conversacion-modal-component (iniciar)="iniciar($event)" (cerrar)="mostrarModal = false"></app-nueva-conversacion-modal-component>
+}
+
