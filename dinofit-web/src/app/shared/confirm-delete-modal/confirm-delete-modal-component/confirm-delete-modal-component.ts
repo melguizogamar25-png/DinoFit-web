@@ -8,7 +8,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ConfirmDeleteModalComponent {
 
-   @Input() elemento = 'este elemento';
+ 
+  @Input() titulo = '¿Confirmar eliminación?';
+  @Input() mensaje = 'Esta acción no se puede deshacer.';
 
   @Output() respuesta = new EventEmitter<boolean>();
 }

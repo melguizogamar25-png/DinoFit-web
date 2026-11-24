@@ -1,0 +1,6 @@
+.icono-seccion { 
+    width: 2.6rem; 
+    height: 2.6rem; 
+    background: #e6f2fb; 
+}
+@media (min-width: 992px) { .border-end-lg { border-right: 1px solid #e3e8ef; } }

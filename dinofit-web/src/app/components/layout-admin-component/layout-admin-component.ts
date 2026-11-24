@@ -11,10 +11,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   templateUrl: './layout-admin-component.html',
 })
 export class LayoutAdminComponent {
-  
+
   private router = inject(Router);
 
-  // Título de la barra superior: se lee del "data" de la ruta activa
   titulo = signal('');
 
   constructor() {

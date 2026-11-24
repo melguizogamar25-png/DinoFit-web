@@ -1,15 +1,15 @@
 <div class="modal-backdrop fade show"></div>
 <div class="modal fade show d-block" tabindex="-1" (click)="respuesta.emit(false)">
   <div class="modal-dialog modal-dialog-centered" (click)="$event.stopPropagation()">
-    <div class="modal-content border-0 rounded-4">
-      <div class="modal-body text-center p-4">
-        <i class="bi bi-trash3 fs-1 text-danger"></i>
-        <h2 class="h5 fw-bold mt-2">¿Eliminar {{ elemento }}?</h2>
-        <p class="text-secondary">Esta acción no se puede deshacer.</p>
-        <div class="d-flex justify-content-center gap-2">
-          <button type="button" class="btn btn-light bg-white border fw-medium" (click)="respuesta.emit(false)">No, cancelar</button>
-          <button type="button" class="btn btn-danger fw-medium" (click)="respuesta.emit(true)">Sí, eliminar</button>
-        </div>
+    <div class="modal-content border-0 rounded-4 text-center p-4">
+      <div class="icono-aviso rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center">
+        <i class="bi bi-trash3-fill fs-4 text-danger"></i>
+      </div>
+      <h2 class="h4 fw-bold">{{ titulo }}</h2>
+      <p class="text-secondary mb-4">{{ mensaje }}</p>
+      <div class="d-flex justify-content-center gap-3">
+        <button type="button" class="btn btn-light bg-white border fw-medium px-4" (click)="respuesta.emit(false)">No, cancelar</button>
+        <button type="button" class="btn btn-danger fw-semibold px-4" (click)="respuesta.emit(true)">Sí, eliminar</button>
       </div>
     </div>
   </div>

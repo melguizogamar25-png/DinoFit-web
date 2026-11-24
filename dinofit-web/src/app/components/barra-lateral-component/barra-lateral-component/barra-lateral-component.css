@@ -6,7 +6,6 @@
   color: #cbd5e1;
 }
 
-/* Las variables van en el propio .nav, porque Bootstrap las redefine ahí */
 .barra .nav {
   --bs-nav-link-color: #cbd5e1;
   --bs-nav-link-hover-color: #fff;
@@ -16,11 +15,17 @@
   --bs-nav-pills-link-active-bg: #e27b13;
 }
 
-.barra-suave { color: #94a3b8; }
-.barra-caja { background: #2d3748; }
-.avatar-barra { 
-    width: 2.25rem; 
-    height: 2.25rem; 
-    background: #fff2e4; 
-    color: #9b4c06; 
+.barra-suave {
+  color: #94a3b8;
+}
+
+.barra-caja {
+  background: #2d3748;
+}
+
+.avatar-barra {
+  width: 2.25rem;
+  height: 2.25rem;
+  background: #fff2e4;
+  color: #9b4c06;
 }

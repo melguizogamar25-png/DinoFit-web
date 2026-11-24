@@ -1,0 +1,104 @@
+<div class="modal-backdrop fade show"></div>
+<div class="modal fade show d-block" tabindex="-1" (click)="cerrar.emit()">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" (click)="$event.stopPropagation()">
+    <form class="modal-content border-0 rounded-4" (ngSubmit)="guardar.emit()">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title fw-bold h3">Dar de alta cliente</h2>
+        </div>
+        <button type="button" class="btn-close" aria-label="Cerrar" (click)="cerrar.emit()"></button>
+      </div>
+
+      <div class="modal-body p-4">
+        <div class="row g-4">
+          <div class="col-12 col-lg-8 border-end-lg">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <span class="icono-seccion rounded-3 d-flex align-items-center justify-content-center"><i class="bi bi-person text-primary fs-5"></i></span>
+              <div><h3 class="h5 fw-bold mb-0">Datos personales</h3></div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-medium" for="nombreCliente">Nombre completo</label>
+              <input type="text" class="form-control form-control-lg" id="nombreCliente" placeholder="Introduce el nombre y los apellidos">
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-12 col-md-6">
+                <label class="form-label fw-medium" for="fechaNacimiento">Fecha de nacimiento</label>
+                <div class="input-group input-group-lg">
+                  <input type="text" class="form-control" id="fechaNacimiento" placeholder="DD / MM / AAAA">
+                  <span class="input-group-text bg-white"><i class="bi bi-calendar3 text-primary"></i></span>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label fw-medium" for="dniCliente">DNI</label>
+                <input type="text" class="form-control form-control-lg" id="dniCliente" placeholder="Introduce el DNI">
+              </div>
+            </div>
+            <div class="d-flex justify-content-between"><label class="form-label fw-medium">Género</label><small class="text-secondary">Selecciona una sola opción</small></div>
+            <div class="row g-3 mb-4">
+              <div class="col-6"><div class="form-check border rounded-3 p-3 ps-5"><input class="form-check-input" type="radio" name="genero" id="generoHombre"><label class="form-check-label w-100" for="generoHombre">Hombre</label></div></div>
+              <div class="col-6"><div class="form-check border rounded-3 p-3 ps-5"><input class="form-check-input" type="radio" name="genero" id="generoMujer"><label class="form-check-label w-100" for="generoMujer">Mujer</label></div></div>
+            </div>
+
+            <hr>
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <span class="icono-seccion rounded-3 d-flex align-items-center justify-content-center"><i class="bi bi-person-lines-fill text-primary fs-5"></i></span>
+              <div><h3 class="h5 fw-bold mb-0">Contacto y dirección</h3></div>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-12 col-md-6">
+                <label class="form-label fw-medium" for="telefonoCliente">Número de teléfono</label>
+                <input type="tel" class="form-control form-control-lg" id="telefonoCliente" placeholder="Introduce el número de teléfono">
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label fw-medium" for="correoCliente">Correo electrónico</label>
+                <div class="input-group input-group-lg">
+                  <span class="input-group-text bg-white border-end-0"><i class="bi bi-person-fill"></i></span>
+                  <input type="email" class="form-control border-start-0" id="correoCliente">
+                </div>
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="col-12 col-md-8">
+                <label class="form-label fw-medium" for="direccionCliente">Dirección</label>
+                <input type="text" class="form-control form-control-lg" id="direccionCliente" placeholder="Calle, número, piso y puerta">
+              </div>
+              <div class="col-12 col-md-4">
+                <label class="form-label fw-medium" for="codigoPostal">Código postal</label>
+                <input type="text" class="form-control form-control-lg" id="codigoPostal" placeholder="Introduce el código">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <span class="icono-seccion rounded-3 d-flex align-items-center justify-content-center"><i class="bi bi-credit-card text-primary fs-5"></i></span>
+              <div><h3 class="h5 fw-bold mb-0">Tarifa y pago</h3></div>
+            </div>
+            <label class="form-label fw-medium" for="tarifaCliente">Selección de tarifa</label>
+            <select class="form-select form-select-lg mb-3" id="tarifaCliente">
+              <option>Selecciona una tarifa</option>
+              @for (tarifa of tarifas; track tarifa) { <option>{{ tarifa }}</option> }
+            </select>
+            <div class="aviso-naranja d-flex gap-3 mb-3">
+              <i class="bi bi-plus-lg fs-5"></i>
+              <div><strong class="d-block">Matrícula</strong><small>Se añade a la tarifa seleccionada.</small></div>
+            </div>
+            <label class="form-label fw-medium" for="pagoCliente">Método de pago</label>
+            <select class="form-select form-select-lg" id="pagoCliente">
+              <option>Selecciona un método de pago</option>
+              @for (metodo of metodosPago; track metodo) { <option>{{ metodo }}</option> }
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer justify-content-between">
+        <small class="text-secondary"><i class="bi bi-info-circle text-primary me-2"></i>Revisa los datos antes de dar de alta al cliente.</small>
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-light bg-white border fw-medium px-4" (click)="cerrar.emit()">Cancelar</button>
+          <button type="submit" class="btn btn-dino px-4"><i class="bi bi-person-plus me-2"></i>Confirmar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
