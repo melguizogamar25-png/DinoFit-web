@@ -1,1 +1,112 @@
-<p>inicio-pages-component works!</p>
+<div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+  <div>
+    <h1 class="display-6 fw-bold mb-1">Hola, Laura</h1>
+  </div>
+  <div class="d-flex gap-2">
+    <button type="button" class="btn btn-light bg-white border fw-medium"><i class="bi bi-calendar3 me-2"></i>02–08 oct 2026</button>
+    <button type="button" class="btn btn-dino-azul"><i class="bi bi-download me-2"></i>Exportar Informe</button>
+  </div>
+</div>
+
+<div class="row g-3 mb-4">
+  @for (estadistica of estadisticas; track estadistica.titulo) {
+    <div class="col-12 col-md-6 col-xl-3">
+      <app-tarjeta-estadistica-component
+        [titulo]="estadistica.titulo" [valor]="estadistica.valor" [detalle]="estadistica.detalle"
+        [icono]="estadistica.icono" [colorIcono]="estadistica.colorIcono" [colorDetalle]="estadistica.colorDetalle">
+      </app-tarjeta-estadistica-component>
+    </div>
+  }
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-12 col-xl-8">
+    <div class="tarjeta p-4 h-100">
+      <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+          <h2 class="h4 fw-bold mb-1">Actividad de la semana</h2>
+          <small class="text-secondary">Asistencia y comidas marcadas · 02–08 octubre</small>
+        </div>
+        <span class="etiqueta etiqueta-azul">Últimos 7 días</span>
+      </div>
+      <div class="d-flex gap-4 mb-3">
+        <div><div class="h3 fw-bold mb-0">88 %</div><small class="text-secondary">Asistencia media</small></div>
+        <div><div class="h3 fw-bold mb-0">76 %</div><small class="text-secondary">Comidas marcadas</small></div>
+      </div>
+      <div class="d-flex gap-4 small mb-2">
+        <span class="text-warning-emphasis"><i class="bi bi-circle-fill small me-1"></i>Asistencia (%)</span>
+        <span class="text-primary"><i class="bi bi-circle-fill small me-1"></i>Comidas marcadas (%)</span>
+      </div>
+      <svg viewBox="0 0 900 260" class="w-100" role="img" aria-label="Gráfica de actividad semanal">
+        @for (guia of guias; track guia) {
+          <line x1="40" [attr.y1]="y(guia)" x2="880" [attr.y2]="y(guia)" stroke="#e3e8ef"></line>
+          <text x="0" [attr.y]="y(guia) + 4" fill="#94a3b8" font-size="12">{{ guia }}</text>
+        }
+        <polyline [attr.points]="puntos(asistencia)" fill="none" stroke="#e07b12" stroke-width="3"></polyline>
+        <polyline [attr.points]="puntos(comidasMarcadas)" fill="none" stroke="#2f8fd0" stroke-width="3"></polyline>
+        @for (dia of dias; track dia; let i = $index) {
+          <text [attr.x]="x(i)" y="250" fill="#94a3b8" font-size="12" text-anchor="middle">{{ dia }}</text>
+        }
+      </svg>
+    </div>
+  </div>
+
+  <div class="col-12 col-xl-4">
+    <div class="tarjeta p-4 h-100">
+      <h2 class="h4 fw-bold mb-1">Racha</h2>
+      <small class="text-secondary d-block mb-4">Constancia diaria · Últimos 7 días</small>
+      @for (racha of rachas; track racha.nombre) {
+        <div class="d-flex align-items-center gap-3 mb-4">
+          <div class="avatar-iniciales rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">{{ racha.iniciales }}</div>
+          <div class="flex-grow-1">
+            <div class="fw-semibold">{{ racha.nombre }}</div>
+            <div class="d-flex gap-1 mt-1">
+              @for (hecho of racha.semana; track $index) {
+                <span class="dia-racha" [class.dia-hecho]="hecho === 1">{{ letrasSemana[$index] }}</span>
+              }
+            </div>
+          </div>
+          <span class="text-warning-emphasis fw-semibold text-nowrap"><i class="bi bi-fire me-1"></i>{{ racha.dias }} días</span>
+        </div>
+      }
+      <div class="aviso-azul">
+        <div class="fw-semibold">21 clientes con racha de 4+ días</div>
+        <small class="text-secondary">Envía un mensaje para reconocer su esfuerzo.</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tarjeta p-4">
+  <div class="d-flex justify-content-between align-items-start mb-3">
+    <div>
+      <h2 class="h4 fw-bold mb-1">Clientes que requieren seguimiento</h2>
+      <small class="text-secondary">Prioriza las acciones de hoy</small>
+    </div>
+    <a routerLink="/clientes" class="text-primary fw-semibold text-decoration-none">Ver todos los clientes</a>
+  </div>
+  <div class="table-responsive">
+    <table class="table align-middle mb-0">
+      <thead class="cabecera-tabla">
+        <tr><th>Cliente</th><th>Motivo</th><th>Cumplimiento</th><th>Último acceso</th><th>Acción</th></tr>
+      </thead>
+      <tbody>
+        @for (cliente of seguimiento; track cliente.nombre) {
+          <tr>
+            <td class="py-3">
+              <div class="d-flex align-items-center gap-3">
+                <div class="avatar-iniciales rounded-circle d-flex align-items-center justify-content-center">{{ cliente.iniciales }}</div>
+                <strong>{{ cliente.nombre }}</strong>
+              </div>
+            </td>
+            <td class="py-3">{{ cliente.motivo }}</td>
+            <td class="py-3">{{ cliente.cumplimiento }}</td>
+            <td class="py-3">{{ cliente.ultimoAcceso }}</td>
+            <td class="py-3"><a [routerLink]="cliente.ruta" class="text-primary fw-semibold text-decoration-none">{{ cliente.accion }} →</a></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
