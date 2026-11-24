@@ -1,0 +1,14 @@
+.panel-izquierdo {background: #faf5ef;}
+.logo-login{width: 200px;}
+.titular{
+    font-size: 2.6rem;
+    line-height: 1.25;
+    color: #1a202c;
+}
+.foto-login {
+    border-radius: 1.2rem;
+    object-fit: cover;
+}
+.formulario {max-width: 520px;}
+.aviso-gris {background: #f1f5f9;}
+.btn-dino {padding: .9rem 1rem;}

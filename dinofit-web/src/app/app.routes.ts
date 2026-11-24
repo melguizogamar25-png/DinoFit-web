@@ -11,20 +11,20 @@ import { InicioPagesComponent } from './pages/inicio-pages/inicio-pages-componen
 import { ChatPagesComponent } from './pages/chat-pages/chat-pages-component/chat-pages-component';
 
 export const routes: Routes = [
-  {path: '', redirectTo: 'login', pathMatch: 'full'},
-    {path: 'login', component: LayoutAdminComponent},
+
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: 'login', component: LoginPageComponent },
     {
         path: '',
         component: LayoutAdminComponent,
-       children: [
-            {path: 'inicio', component: InicioPagesComponent, data: {titulo: 'Inicio'}},
-            {path: 'clientes', component: ClientesPageComponent, data: {titulo: 'Clientes'}},
-            {path: 'rutinas', component: RutinaPageComponent, data: {titulo: 'Rutinas'}},
-            {path: 'ejercicios', component: EjerciciosPageComponent, data: {titulo: 'Ejercicios'}},
-            {path: 'dietas', component: DietasPageComponent, data: {titulo: 'Dietas'}},
-            {path: 'alimentos', component: AlimentoPageComponent, data: {titulo: 'Alimentos'}},
-            {path: 'chat', component: ChatPagesComponent, data: {titulo: 'Chat'}}
+        children: [
+            { path: 'inicio', component: InicioPagesComponent, data: { titulo: 'Inicio' } },
+            { path: 'clientes', component: ClientesPageComponent, data: { titulo: 'Clientes' } },            { path: 'rutinas', component: RutinaPageComponent, data: { titulo: 'Rutinas' } },
+            { path: 'ejercicios', component: EjerciciosPageComponent, data: { titulo: 'Ejercicios' } },
+            { path: 'dietas', component: DietasPageComponent, data: { titulo: 'Dietas' } },
+            { path: 'alimentos', component: AlimentoPageComponent, data: { titulo: 'Alimentos' } },
+            { path: 'chat', component: ChatPagesComponent, data: { titulo: 'Chat' } }
         ]
     },
-    {path: '**', component:NoEncontradaPageComponent}
+    { path: '**', component: NoEncontradaPageComponent }
 ];
