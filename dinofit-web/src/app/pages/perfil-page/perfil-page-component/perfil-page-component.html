@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+  <div>
+    <h1 class="display-6 fw-bold mb-1">Mi perfil profesional</h1>  </div>
+  <button type="button" class="btn btn-dino"><i class="bi bi-floppy me-2"></i>Guardar cambios</button>
+</div>
+
+<div class="row g-4">
+  <div class="col-12 col-xl-4">
+    <div class="tarjeta p-4 text-center">
+      <div class="avatar-perfil rounded-circle mx-auto d-flex align-items-center justify-content-center fw-bold mb-3">LM</div>
+      <a href="#" class="text-primary fw-semibold text-decoration-none"><i class="bi bi-camera me-2"></i>Cambiar foto</a>
+      <h2 class="h4 fw-bold mt-3 mb-1">Laura Martínez</h2>
+      <p class="text-secondary">laura.martinez@dinofit.es</p>
+      <span class="etiqueta etiqueta-naranja">Entrenadora</span>
+      <hr class="my-4">
+      <div class="text-start">
+        <div class="mb-3"><small class="text-secondary d-block">Equipo</small>DinoFit · Sevilla</div>
+        <div class="mb-3"><small class="text-secondary d-block">Especialidad</small>Fuerza y recomposición</div>
+        <div class="mb-3"><small class="text-secondary d-block">Clientes activos</small>128</div>
+        <div><small class="text-secondary d-block">Miembro desde</small>Marzo de 2025</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-xl-8">
+    <div class="tarjeta p-4 mb-4">
+      <h3 class="h4 fw-bold mb-1">Datos personales y profesionales</h3>
+      <div class="row g-3">
+        <div class="col-12 col-md-6"><label class="texto-etiqueta mb-1" for="nombrePerfil">Nombre</label><input type="text" class="form-control form-control-lg" id="nombrePerfil" value="Laura"></div>
+        <div class="col-12 col-md-6"><label class="texto-etiqueta mb-1" for="apellidosPerfil">Apellidos</label><input type="text" class="form-control form-control-lg" id="apellidosPerfil" value="Martínez Fernández"></div>
+        <div class="col-12 col-md-6"><label class="texto-etiqueta mb-1" for="correoPerfil">Correo electrónico</label>
+          <div class="input-group input-group-lg"><span class="input-group-text bg-white border-end-0"><i class="bi bi-envelope"></i></span><input type="email" class="form-control border-start-0" id="correoPerfil" value="laura.martinez@dinofit.es"></div></div>
+        <div class="col-12 col-md-6"><label class="texto-etiqueta mb-1" for="telefonoPerfil">Teléfono</label><input type="text" class="form-control form-control-lg" id="telefonoPerfil" value="+34 610 234 567"></div>
+        <div class="col-12 col-md-6"><label class="texto-etiqueta mb-1" for="especialidadPerfil">Especialidad</label><input type="text" class="form-control form-control-lg" id="especialidadPerfil" value="Fuerza y recomposición corporal"></div>
+        <div class="col-12 col-md-6"><label class="texto-etiqueta mb-1" for="centroPerfil">Centro / equipo</label><input type="text" class="form-control form-control-lg" id="centroPerfil" value="DinoFit · Sevilla"></div>
+        <div class="col-12"><label class="texto-etiqueta mb-1" for="presentacionPerfil">Presentación profesional</label><input type="text" class="form-control form-control-lg" id="presentacionPerfil" value="Acompaño a mis clientes con planes realistas, técnica de calidad y seguimiento cercano."></div>
+        <div class="col-12 col-md-6"><label class="texto-etiqueta mb-1" for="idiomaPerfil">Idioma</label><select class="form-select form-select-lg" id="idiomaPerfil">@for (idioma of idiomas; track idioma) { <option>{{ idioma }}</option> }</select></div>
+        <div class="col-12 col-md-6"><label class="texto-etiqueta mb-1" for="zonaPerfil">Zona horaria</label><select class="form-select form-select-lg" id="zonaPerfil">@for (zona of zonasHorarias; track zona) { <option>{{ zona }}</option> }</select></div>
+      </div>
+    </div>
+
+    <div class="tarjeta p-4">
+      <div class="d-flex justify-content-between align-items-start mb-4">
+        <div>
+          <h3 class="h4 fw-bold mb-1">Seguridad y cambio de contraseña</h3>
+          <small class="text-secondary">Actualiza tu contraseña de acceso profesional</small>
+        </div>
+        <i class="bi bi-key fs-4 text-primary"></i>
+      </div>
+      <div class="row g-3 mb-4">
+        <div class="col-12 col-md-4"><label class="texto-etiqueta mb-1" for="contrasenaActual">Contraseña actual</label>
+          <div class="input-group input-group-lg"><button type="button" class="btn bg-white border border-end-0 text-secondary" (click)="verActual = !verActual" aria-label="Mostrar contraseña"><i class="bi" [class.bi-eye-slash]="!verActual" [class.bi-eye]="verActual"></i></button><input [type]="verActual ? 'text' : 'password'" class="form-control border-start-0" id="contrasenaActual" value="dinofit12345"></div></div>
+        <div class="col-12 col-md-4"><label class="texto-etiqueta mb-1" for="contrasenaNueva">Nueva contraseña</label>
+          <div class="input-group input-group-lg"><button type="button" class="btn bg-white border border-end-0 text-secondary" (click)="verNueva = !verNueva" aria-label="Mostrar contraseña"><i class="bi" [class.bi-eye-slash]="!verNueva" [class.bi-eye]="verNueva"></i></button><input [type]="verNueva ? 'text' : 'password'" class="form-control border-start-0" id="contrasenaNueva" placeholder="Introduce nueva contraseña"></div></div>
+        <div class="col-12 col-md-4"><label class="texto-etiqueta mb-1" for="contrasenaConfirmar">Confirmar contraseña</label>
+          <div class="input-group input-group-lg"><button type="button" class="btn bg-white border border-end-0 text-secondary" (click)="verConfirmar = !verConfirmar" aria-label="Mostrar contraseña"><i class="bi" [class.bi-eye-slash]="!verConfirmar" [class.bi-eye]="verConfirmar"></i></button><input [type]="verConfirmar ? 'text' : 'password'" class="form-control border-start-0" id="contrasenaConfirmar" placeholder="Repite la nueva contraseña"></div></div>
+      </div>
+      <button type="button" class="btn btn-dino"><i class="bi bi-key me-2"></i>Cambiar contraseña</button>
+    </div>
+  </div>
+</div>
+

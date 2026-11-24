@@ -9,6 +9,7 @@ import { AlimentoPageComponent } from './pages/alimento-page/alimento-page-compo
 import { NoEncontradaPageComponent } from './pages/no-encontrada-page/no-encontrada-page-component/no-encontrada-page-component';
 import { InicioPagesComponent } from './pages/inicio-pages/inicio-pages-component';
 import { ChatPagesComponent } from './pages/chat-pages/chat-pages-component/chat-pages-component';
+import { PerfilPageComponent } from './pages/perfil-page/perfil-page-component/perfil-page-component';
 
 export const routes: Routes = [
 
@@ -23,7 +24,8 @@ export const routes: Routes = [
             { path: 'ejercicios', component: EjerciciosPageComponent, data: { titulo: 'Ejercicios' } },
             { path: 'dietas', component: DietasPageComponent, data: { titulo: 'Dietas' } },
             { path: 'alimentos', component: AlimentoPageComponent, data: { titulo: 'Alimentos' } },
-            { path: 'chat', component: ChatPagesComponent, data: { titulo: 'Chat' } }
+            { path: 'chat', component: ChatPagesComponent, data: { titulo: 'Chat' } },
+            {path: 'perfil', component: PerfilPageComponent}
         ]
     },
     { path: '**', component: NoEncontradaPageComponent }
